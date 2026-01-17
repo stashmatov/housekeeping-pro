@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housekeeping Manager - Hotel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏨 Housekeeping Manager</h1>
+            <p class="subtitle">Real-time Room Status Tracking</p>
+        </header>
+
+        <!-- Add Room Form -->
+        <div class="add-room-section">
+            <h2>Add New Room</h2>
+            <div class="form-group">
+                <input type="text" id="roomNumber" placeholder="Room Number (e.g., 101)" maxlength="4">
+                <select id="staff">
+                    <option value="">Select Staff</option>
+                    <option value="Maria">Maria</option>
+                    <option value="John">John</option>
+                    <option value="Sofia">Sofia</option>
+                    <option value="Ahmed">Ahmed</option>
+                    <option value="Rosa">Rosa</option>
+                </select>
+                <input type="text" id="notes" placeholder="Notes (optional)">
+                <label>
+                    <input type="checkbox" id="priority"> VIP/Priority
+                </label>
+                <button onclick="addRoom()" class="btn-primary">+ Add Room</button>
+            </div>
+        </div>
+
+        <!-- Filter & Stats -->
+        <div class="filter-section">
+            <div class="stats">
+                <div class="stat-item ready">
+                    <span class="stat-number" id="countReady">0</span>
+                    <span class="stat-label">Ready</span>
+                </div>
+                <div class="stat-item cleaning">
+                    <span class="stat-number" id="countCleaning">0</span>
+                    <span class="stat-label">Cleaning</span>
+                </div>
+                <div class="stat-item inspecting">
+                    <span class="stat-number" id="countInspecting">0</span>
+                    <span class="stat-label">Inspecting</span>
+                </div>
+                <div class="stat-item dirty">
+                    <span class="stat-number" id="countDirty">0</span>
+                    <span class="stat-label">Dirty</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room Dashboard -->
+        <div class="dashboard">
+            <div class="status-column">
+                <h3>🟢 Ready</h3>
+                <div id="ready" class="room-list ready-list"></div>
+            </div>
+            <div class="status-column">
+                <h3>🟡 Cleaning</h3>
+                <div id="cleaning" class="room-list cleaning-list"></div>
+            </div>
+            <div class="status-column">
+                <h3>🔵 Inspecting</h3>
+                <div id="inspecting" class="room-list inspecting-list"></div>
+            </div>
+            <div class="status-column">
+                <h3>🔴 Dirty/Occupied</h3>
+                <div id="dirty" class="room-list dirty-list"></div>
+            </div>
+        </div>
+
+        <!-- Room Detail Modal -->
+        <div id="roomModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalRoomNumber"></h2>
+                <div class="modal-form">
+                    <div class="form-group">
+                        <label>Status:</label>
+                        <select id="modalStatus">
+                            <option value="Ready">🟢 Ready</option>
+                            <option value="Cleaning">🟡 Cleaning</option>
+                            <option value="Inspecting">🔵 Inspecting</option>
+                            <option value="Dirty">🔴 Dirty/Occupied</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Assigned Staff:</label>
+                        <select id="modalStaff">
+                            <option value="">Unassigned</option>
+                            <option value="Maria">Maria</option>
+                            <option value="John">John</option>
+                            <option value="Sofia">Sofia</option>
+                            <option value="Ahmed">Ahmed</option>
+                            <option value="Rosa">Rosa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes:</label>
+                        <textarea id="modalNotes" placeholder="Add notes about room..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="modalPriority"> VIP/Priority
+                        </label>
+                    </div>
+                    <div class="modal-buttons">
+                        <button onclick="updateRoom()" class="btn-primary">Save Changes</button>
+                        <button onclick="deleteRoom()" class="btn-danger">Delete Room</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Housekeeping Manager v1.0 | Data saved locally on your device</p>
+            <button onclick="clearAllData()" class="btn-secondary">Clear All Data</button>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
